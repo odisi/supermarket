@@ -1,12 +1,13 @@
 const Test = require('./test');
-const Cart = require('../models/cart');
-const Location = require('../models/location/location');
-const Address = require('../models/location/address');
-const Company = require('../models/company');
-const Item = require('../models/item');
-const Product = require('../models/product');
-const Mongoose = require('mongoose');
-const MongooseSchema = require('../dao/mongoose-schema');
+const Cart = require('../app/models/cart');
+const Location = require('../app/models/location/location');
+const Address = require('../app/models/location/address');
+const Company = require('../app/models/company');
+const Item = require('../app/models/item');
+const Product = require('../app/models/product');
+const MongooseSchema = require('../app/dao/mongoose-schema');
+const mongoose = require('mongoose');
+require('../app/app');
 
 class CartTest {
     testClass() {
@@ -23,26 +24,19 @@ class CartTest {
     testDB() {
         const product = this.createProduct();
         const cart = this.createCart(this.createCompany(this.createAddress(this.createLocation())), [this.createItem(product, 10, 2), this.createItem(product, 20, 3)]);
-        const now = new Date();
 
-        Mongoose.connect('mongodb://localhost/test');
+        /*const schema = MongooseSchema.cart();
 
-        var db = Mongoose.connection;
-        db.on('error', console.error.bind(console, 'connection error:'));
-        db.once('open', function () {
-            const schema = MongooseSchema.cart(Mongoose);
+        const model = mongoose.model('Cart', schema);
 
-            const model = Mongoose.model('Cart', schema);
+        var obj = new model(cart);
 
-            var obj = new model(cart);
+        obj.save((error, obj) => {
+            if (error)
+                return console.error(error);
 
-            obj.save((error, obj) => {
-                if (error)
-                    return console.error(error);
-
-                console.log('saved');
-            })
-        });
+            console.log('saved');
+        })*/
     }
 
     createCart(company, itens) {

@@ -1,23 +1,25 @@
-class MongooseSchema {
-    static cart(mongoose) {
+var mongoose = require('mongoose');
+
+class CartSchema {
+    static cart() {
         return mongoose.Schema({
-            itens: [MongooseSchema.item(mongoose)],
-            company: MongooseSchema.company(mongoose),
+            itens: [CartSchema.item()],
+            company: CartSchema.company(),
             date: Date,
             amount: Number
         });
     }
 
-    static item(mongoose) {
+    static item() {
         return mongoose.Schema({
             _id: false,
-            product: MongooseSchema.product(mongoose),
+            product: CartSchema.product(),
             quantity: Number,
             price: Number
         });
     }
 
-    static product(mongoose) {
+    static product() {
         return mongoose.Schema({
             _id: false,
             name: String,
@@ -30,18 +32,18 @@ class MongooseSchema {
         });
     }
 
-    static company(mongoose) {
+    static company() {
         return mongoose.Schema({
             _id: false,
             name: String,
             image: String,
-            address: MongooseSchema.address(mongoose),
+            address: CartSchema.address(),
             cnpj: String,
             url: String
         });
     }
 
-    static address(mongoose) {
+    static address() {
         return mongoose.Schema({
             _id: false,
             name: String,
@@ -51,11 +53,11 @@ class MongooseSchema {
             neighborhood: String,
             city: String,
             state: String,
-            location: MongooseSchema.location(mongoose)
+            location: CartSchema.location()
         });
     }
 
-    static location(mongoose) {
+    static location() {
         return mongoose.Schema({
             _id: false,
             type: String,
@@ -64,4 +66,4 @@ class MongooseSchema {
     }
 }
 
-module.exports = MongooseSchema;
+module.exports = mongoose.model('Cart', CartSchema.cart());
