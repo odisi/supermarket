@@ -1,0 +1,25 @@
+{
+  "name": "supermarket",
+  "description": "Supermarket price history and compare",
+  "version": "0.0.1",
+  "private": true,
+  "author": {
+    "name": "Cereso Rodrigues",
+    "email": "cereso.rodrigues@gmail.com"
+  },
+  "keywords": [
+    "supermarket",
+    "price",
+    "history"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/odisi/supermarket.git"
+  },
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "mongoose": "^4.11.1"
+  }
+}
