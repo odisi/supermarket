@@ -5,7 +5,7 @@ const Address = require('../app/models/location/address');
 const Company = require('../app/models/company');
 const Item = require('../app/models/item');
 const Product = require('../app/models/product');
-const MongooseSchema = require('../app/dao/mongoose-schema');
+const CartSchema = require('../app/dao/cart-schema');
 const mongoose = require('mongoose');
 require('../app/app');
 
@@ -25,18 +25,14 @@ class CartTest {
         const product = this.createProduct();
         const cart = this.createCart(this.createCompany(this.createAddress(this.createLocation())), [this.createItem(product, 10, 2), this.createItem(product, 20, 3)]);
 
-        /*const schema = MongooseSchema.cart();
-
-        const model = mongoose.model('Cart', schema);
-
-        var obj = new model(cart);
+        var obj = new CartSchema(cart);
 
         obj.save((error, obj) => {
             if (error)
                 return console.error(error);
 
             console.log('saved');
-        })*/
+        });
     }
 
     createCart(company, itens) {
